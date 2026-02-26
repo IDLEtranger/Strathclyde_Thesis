@@ -1,0 +1,103 @@
+\documentclass[12pt,titlepage,dvipsnames,table,xcdraw]{report}
+\usepackage{strath-dissertation}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black,
+    linktoc=all
+}
+\addbibresource{references/bibliography.bib}
+
+\begin{document}
+%--------------------------------
+% Title page.
+%--------------------------------
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\vspace*{-35mm}
+\toprightcrest{blue_background_square}
+\vspace*{60mm}
+\titletext{Refuting the Fallacy of Copernicus's Heliocentric Model: A New Theory of Planetary Motion}
+\vspace{15mm}
+\authortext{John Doe}
+\vspace{15mm}
+\departmenttext
+\vspace{15mm}
+\awardtext
+\vspace{15mm}
+\datetext{\DTMdate{2077-08-20}}
+\end{titlepage}
+
+%--------------------------------
+% Front matter numbering.
+%--------------------------------
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+%--------------------------------
+% Setting counter depth.
+%--------------------------------
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+%--------------------------------
+% The front matter.
+%--------------------------------
+\setstretch{1.5} 
+
+\input{frontmatter/declaration}
+
+\input{frontmatter/abstract}
+
+\input{frontmatter/acknowledgements}
+
+\input{frontmatter/previously-published-work}
+
+%--------------------------------
+% Contents and lists.
+%--------------------------------
+\setstretch{1.0}
+
+\tableofcontents
+\clearpage
+
+\input{chapters/nomenclature}
+
+\input{chapters/abbreviations}
+
+\listoftables
+
+\listoffigures
+\clearpage
+
+%--------------------------------
+% The body of the document.
+%--------------------------------
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic} % Page numbering for rest of document.
+\setstretch{1.5} 
+
+\input{chapters/chap1_introduction}
+
+%--------------------------------
+% Appendices
+%--------------------------------
+\clearpage
+\appendix
+\titlecontents{chapter}[0pt]{\addvspace{16pt}\filright\bf}
+               {\contentspush{Appendix\ \thecontentslabel\ \quad}}
+               {}{\titlerule*[8pt]{.}\contentspage}
+
+\setstretch{1.5}
+\input{appendices/example-appendix}
+
+%--------------------------------
+% Bibliography
+%--------------------------------
+\clearpage
+\setstretch{1.0}
+\printbibliography[heading=bibintoc, title={References}]
+\end{document}

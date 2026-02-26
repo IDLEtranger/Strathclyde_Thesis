@@ -1,0 +1,239 @@
+%----------------------------------------
+% pagesize and layout
+%----------------------------------------
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=35mm,
+  right=25mm,
+  top=25mm,
+  bottom=30mm,
+  headheight=19pt,
+  includehead=true,
+  heightrounded=true
+}
+
+%----------------------------------------
+% Needed for coloured text.
+%----------------------------------------
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+
+%----------------------------------------
+% Page style, header and footer.
+%----------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\nouppercase{\leftmark}} 
+\lhead{}
+\cfoot{\thepage}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter\ #1}{}}
+\renewcommand{\sectionmark}[1]{}
+\renewcommand{\subsectionmark}[1]{}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \rhead{\nouppercase{\leftmark}}
+  \cfoot{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+%----------------------------------------
+% Set the parskip to avoid indenting.
+%----------------------------------------
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+%----------------------------------------
+% Avoid overfull lines.
+%----------------------------------------
+% \sloppy
+\usepackage[patch=none]{microtype}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+
+%----------------------------------------
+% Graphics and graphics path.
+%----------------------------------------
+\usepackage{svg}
+\usepackage{tikz}
+\usepackage{ifthen,graphicx}
+\graphicspath{{./images/}
+{./images/frontmatter/}
+{./images/chapters/}
+{./images/appendices/}}
+
+%----------------------------------------
+% Font: TeX Gyre Pagella
+%----------------------------------------
+\usepackage{tgpagella}
+
+%----------------------------------------
+% Date and Time Formatting
+%----------------------------------------
+\usepackage[en-GB]{datetime2}
+\DTMlangsetup[en-GB]{ord=omit}
+
+%----------------------------------------
+% Title page commands.
+%----------------------------------------
+\newcommand{\titletext}[1]{
+  \begin{center}
+    \fontsize{22pt}{28pt}\selectfont\bfseries #1
+  \end{center}
+}
+
+\newcommand{\authortext}[1]{%
+  \begin{center}
+    {\fontsize{14pt}{18pt}\selectfont by} \\
+    \vspace{3mm}
+    {\fontsize{16pt}{18pt}\selectfont\bfseries #1}
+  \end{center}
+}
+
+\newcommand{\departmenttext}{
+  \begin{center}
+  {\fontsize{14pt}{30pt}\selectfont
+  Department of Design Manufacturing and Engineering Management\\
+  Faculty of Engineering\\
+  University of Strathclyde\\
+  Glasgow\\
+  }
+  \end{center}
+}
+
+\newcommand{\awardtext}{
+  \begin{center}
+    {\fontsize{14pt}{18pt}\selectfont
+    In Fulfilment for the award of Doctor of Philosophy
+    }
+  \end{center}
+}
+
+% svg
+% \newcommand{\toprightcrest}[1]{%
+%   \begin{tikzpicture}[remember picture, overlay]
+%     \node[anchor=north east, inner sep=0pt, xshift=-1.5cm, yshift=-0cm] at (current page.north east) {
+%       \includesvg[width=0.4\linewidth]{#1}
+%     };
+%   \end{tikzpicture}
+% }
+% pdf
+\newcommand{\toprightcrest}[1]{%
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north east, inner sep=0pt, xshift=-1.5cm, yshift=-0cm] at (current page.north east) {
+			\includegraphics[width=0.4\linewidth]{#1}
+		};
+	\end{tikzpicture}
+}
+
+\newcommand{\depttext}[1]{\begin{center}Department of\\ #1\end{center}}
+
+\newcommand{\datetext}[1]{%
+  \begin{center}
+    \fontsize{14pt}{18pt}\selectfont #1
+  \end{center}
+}
+
+%----------------------------------------
+% For circled numbers.
+%----------------------------------------
+\usepackage{tikz}
+\newcommand{\circled}[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+%----------------------------------------
+% Chapter, Section Heading spacing
+%----------------------------------------
+\usepackage{titlesec}
+
+% Chapter format and spacing
+\titleformat{\chapter}[display]
+  {\normalfont\fontsize{22pt}{26pt}\selectfont\bfseries} 
+  {\chaptertitlename\ \thechapter}
+  {0pt} 
+  {\fontsize{22pt}{26pt}\selectfont} 
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+% Section format and spacing
+\titleformat{\section}
+  {\normalfont\fontsize{18pt}{22pt}\selectfont\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% Subsection format and spacing
+\titleformat{\subsection}
+  {\normalfont\fontsize{14pt}{18pt}\selectfont\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+\titlespacing*{\subsection}{0pt}{10pt}{6pt}
+
+%----------------------------------------
+% Figure and Table Format
+%----------------------------------------
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+\usepackage{caption}
+% Set the spacing between the caption and the figure/table
+\captionsetup{skip=8pt}
+
+%----------------------------------------
+% Generate hyperlinks in the PDF document.
+%----------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    pdflang={en-GB}
+}
+
+%----------------------------------------
+% Source code formatting
+%----------------------------------------
+\definecolor{codebkgnd}{RGB}{245,245,245}
+\usepackage{listings}
+\lstset{xleftmargin=2em}
+\lstset{framexleftmargin=2em}
+\lstset{
+  basicstyle=\small\ttfamily, % Compensate for 1.5 linespacing.
+  numbers=left,
+  numberstyle=\small\color{blue},
+  stepnumber=1,
+  numbersep=5pt,
+  backgroundcolor=\color{codebkgnd},
+  showspaces=false,               % do not show spaces adding particular underscores
+  showstringspaces=false,         % do not underline spaces within strings
+  showtabs=false,                 % do not show tabs within strings adding particular underscores
+  rulecolor=\color{black},
+  tabsize=4,                      % sets default tabsize to 4 spaces
+  captionpos=t,                   % sets the caption-position to top
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,  % sets if automatic breaks should only happen at whitespace
+  keywordstyle=\color{Sepia},      % keyword style
+  commentstyle=\color{MidnightBlue},   % comment style
+  stringstyle=\color{OrangeRed}      % string literal style
+}
+
+%----------------------------------------
+% TOC Chapter Prefix Formatting
+%----------------------------------------
+\usepackage{titletoc}
+\titlecontents{chapter}[0pt]{\addvspace{16pt}\filright\bf}
+               {\contentspush{Chapter\ \thecontentslabel\ \quad}}
+               {}{\titlerule*[8pt]{.}\contentspage}
+
+%----------------------------------------
+% Packages
+%----------------------------------------
+\usepackage{setspace}
+\usepackage{lipsum} % placeholder，for demonstration only.
+\usepackage[style=numeric, backend=biber]{biblatex}
+\usepackage[nottoc]{tocbibind}
